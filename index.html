@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Card back template</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Caveat:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="page__intro">
+      <p class="page__kicker">Reusable layout</p>
+      <h1>Card back template</h1>
+      <p class="page__lede">CR80 card-back layout with magnetic stripe, signature panel, and footer marks. Fill the fields — live card numbers and security codes are not stored in the template.</p>
+    </header>
+    <section class="stage" aria-label="Card preview">
+      <article class="card" id="card" aria-label="Payment card back">
+        <header class="card__header">
+          <span data-bind="placard">PLACARD 0000 0000000</span>
+          <span data-bind="website">bank.example</span>
+          <span data-bind="material">Made with 82% recycled plastic</span>
+        </header>
+        <div class="card__stripe" aria-hidden="true"></div>
+        <div class="card__body">
+          <p class="card__sig-caption">Authorised signature / Not valid unless signed</p>
+          <div class="card__sig-row">
+            <div class="brand-mark" aria-hidden="true"><span class="brand-mark__diamond"><span class="brand-mark__fold"></span></span></div>
+            <div class="card__sig-panel"><span class="card__signature" data-bind="signature"></span></div>
+          </div>
+          <div class="card__holder">
+            <span class="card__braille" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></span>
+            <span class="card__name" data-bind="name">CARDHOLDER NAME</span>
+          </div>
+          <p class="card__pan" data-bind="pan">0000 0000 0000 0000</p>
+          <p class="card__meta">
+            <span>EXP <span data-bind="expiry">MM/YY</span></span>
+            <span>cvc <span data-bind="cvc">•••</span></span>
+          </p>
+          <footer class="card__footer">
+            <div class="card__schemes" aria-hidden="true">
+              <div class="eftpos"><span class="eftpos__badge">e</span><span class="eftpos__word">eftpos</span></div>
+              <svg class="contactless" viewBox="0 0 28 28" aria-hidden="true">
+                <path d="M7 10c3.2 2.2 3.2 5.8 0 8" />
+                <path d="M11 7c5 3.4 5 10.6 0 14" />
+                <path d="M15 4.2c6.6 4.4 6.6 15.2 0 19.6" />
+                <path d="M19 1.6c8.2 5.4 8.2 19.4 0 24.8" />
+              </svg>
+            </div>
+            <p class="card__help">For cards assistance:<br /><span data-bind="help">13 0000 or +00 0 0000 0000</span></p>
+            <div class="hologram" aria-hidden="true"><span class="hologram__ring"></span><span class="hologram__core"></span></div>
+          </footer>
+        </div>
+      </article>
+    </section>
+    <form class="editor" id="editor" autocomplete="off">
+      <h2>Template fields</h2>
+      <p class="editor__hint">Values update the card live. Use placeholders, not a real PAN or CVC.</p>
+      <div class="editor__grid">
+        <label>Cardholder name<input name="name" maxlength="32" value="CARDHOLDER NAME" /></label>
+        <label>Card number<input name="pan" maxlength="23" inputmode="numeric" value="0000 0000 0000 0000" /></label>
+        <label>Expiry<input name="expiry" maxlength="5" value="MM/YY" /></label>
+        <label>CVC<input name="cvc" maxlength="4" value="•••" /></label>
+        <label>Signature<input name="signature" maxlength="40" placeholder="Optional script name" value="" /></label>
+        <label>Website<input name="website" maxlength="40" value="bank.example" /></label>
+        <label>Manufacturing line<input name="placard" maxlength="28" value="PLACARD 0000 0000000" /></label>
+        <label>Material note<input name="material" maxlength="40" value="Made with 82% recycled plastic" /></label>
+        <label class="editor__wide">Assistance line<input name="help" maxlength="48" value="13 0000 or +00 0 0000 0000" /></label>
+      </div>
+      <div class="editor__actions">
+        <button type="button" id="reset">Reset placeholders</button>
+        <button type="button" id="print">Print at CR80</button>
+      </div>
+    </form>
+  </main>
+  <script src="template.js"></script>
+</body>
+</html>
